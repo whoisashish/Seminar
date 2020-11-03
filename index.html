@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>U17EC097 Seminar Project</title>
+</head>
+
+<body>
+
+    <h1 class="mainHeading">SMART BINS</h1>
+
+    <div class="container">
+        <div id="home">
+            <div class="info"><br>
+                <h2>What? Why? How?</h2>
+                One of the major common problems observed in undeveloped as well as in developing nations is waste management. Owing to the rapidly increasing population and urbanization this issue has been the cause of non-hygienic environment and several other problems including but not limited to Bad odor, non-attractive environment and several diseases. Be it disposing house waste in household bins or collection of community waste through Municipal corporation issued bins, dustbins play an Important role and hence, should be managed appropriately. The biggest issue seen with Public Garbage bins is they tend to overflow before due time of next cleaning process according to the cleaning schedule of the Municipal corporation. The main theme of this seminar is focused upon implementing a smart bin system for Efficient garbage disposal. The system uses an ultrasonic sensor to measure the level of waste filled in the bin and issue an alert message to the Municipal Corporation’s web server about the waste level and ensure it gets clean before crossing the overflow level.
+            </div><br><br>
+            <div class="binsFull">Overflowing Bins:&nbsp;
+                <span id="binsFullCount">0</span>&nbsp;/&nbsp;10
+            </div>
+        </div>
+        <div id="all">
+            <div class="binStack"><br>
+                <div class="binsFull">Bin 1 :&nbsp;<span id="bin1">Empty</span></div><br>
+                <div class="binsFull">Bin 2 :&nbsp;<span id="bin2">Empty</span></div><br>
+                <div class="binsFull">Bin 3 :&nbsp;<span id="bin3">Empty</span></div><br>
+                <div class="binsFull">Bin 4 :&nbsp;<span id="bin4">Empty</span></div><br>
+                <div class="binsFull">Bin 5 :&nbsp;<span id="bin5">Empty</span></div><br>
+                <div class="binsFull">Bin 6 :&nbsp;<span id="bin6">Empty</span></div><br>
+                <div class="binsFull">Bin 7 :&nbsp;<span id="bin7">Empty</span></div><br>
+                <div class="binsFull">Bin 8 :&nbsp;<span id="bin8">Empty</span></div><br>
+                <div class="binsFull">Bin 9 :&nbsp;<span id="bin9">Empty</span></div><br>
+                <div class="binsFull">Bin 10 :&nbsp;<span id="bin10">Empty</span></div><br>
+            </div>
+        </div>
+        <div id="staff">
+            <div class="allStaff">
+                <h1>Staff Management</h1>
+                <div class="info"><br>
+                    Drag and Drop to change a worker's Status!
+                </div>
+                <main class="row">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">New Staff: </span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Staff Name" data-name="todo-input" />
+                        <div class="input-group-append">
+                            <button class="btn btn-success" data-name="add-btn">Add</button>
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <h3>Available</h3>
+                        <ul class="list-group" data-name="todos-list">
+                            <li class="list-group-item" data-id="1" draggable="true">
+                                <p>Employee 1</p>
+                                <button class="btn btn-outline-danger btn-sm" data-name="remove-btn">
+                                    X
+                                </button>
+                            </li>
+                            <li class="list-group-item" data-id="2" draggable="true">
+                                <p>Employee 2</p>
+                                <button class="btn btn-outline-danger btn-sm" data-name="remove-btn">
+                                    X
+                                </button>
+                            </li>
+                            <li class="list-group-item" data-id="3" draggable="true">
+                                <p>Employee 3</p>
+                                <button class="btn btn-outline-danger btn-sm" data-name="remove-btn">
+                                    X
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-4">
+                        <h3>On Duty</h3>
+                        <ul class="list-group" data-name="in-progress-list"></ul>
+                    </div>
+
+                    <div class="col-4">
+                        <h3>UnAvailable</h3>
+                        <ul class="list-group" data-name="completed-list"></ul>
+                    </div>
+                </main>
+            </div>
+        </div>
+        <div id="bin" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="binContainer">
+                    <img src="img/bin.png" alt="">
+                    <div class="buttonSimulator"><button class="btn btn-danger" onclick="fillBin()">Fill Bin</button><br><br><br><button class="btn btn-success" onclick="emptyBin()">Empty Bin</button></div>
+                </div>
+            </div>
+        </div>
+        <div class="menu">
+            <nav class="menu__nav">
+                <ul class="menu__list r-list">
+                    <li class="menu__group">
+                        <span class="menu__link homeToggle r-link" onclick="openHome()">Home</span>
+                    </li>
+                    <li class="menu__group">
+                        <span class="menu__link allToggle r-link" onclick="openAll()">All Bin Status</span>
+                    </li>
+                    <li class="menu__group">
+                        <span class="menu__link staffToggle r-link" onclick="openStaff()">Manage Staff and Services</span>
+                    </li>
+                    <li class="menu__group">
+                        <span class="menu__link binToggle r-link" id="toggleBin" onclick="openBin()">Create/Delete a Virtual Bin</span>
+                    </li>
+                </ul>
+            </nav>
+            <button class="menu__toggle r-button" type="button">
+                <span class="menu__hamburger m-hamburger">
+                    <span class="m-hamburger__label">
+                        <span class="menu__screen-reader screen-reader">Open menu</span>
+                    </span>
+                </span>
+            </button>
+        </div>
+    </div>
+
+
+
+    <footer></footer>
+    <!-- Optional JavaScript -->
+    <script src="js/script.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+
+</html>
